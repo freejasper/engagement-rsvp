@@ -1,0 +1,30 @@
+#text-footer {
+    position: absolute;
+    bottom: 0.5rem;
+
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    margin-left: -2rem;
+
+    z-index: -1;
+}
+
+#footer-details {
+    font-size: 1rem;
+    line-height: 0.9rem;
+    color: var(--charcoal);
+    margin-top: -12.5vh;
+    padding: 0 2rem 0 2rem;
+
+    font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase;
+    text-align: justify;
+}
+
+#jessandjasper {
+    width: 100%;
+    height: auto;
+    fill: var(--charcoal);
+    stroke: var(--charcoal);
+}

@@ -1,0 +1,47 @@
+#text-header {
+  transition: all 0.5s ease-in-out;
+  text-align: left;
+
+  grid-row-start: 1;
+}
+
+h4 {
+  margin: 0;
+  font-weight: 500;
+  word-spacing: 20px;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+}
+
+h3 {
+  margin: 0;
+  font-family: 'The Youth';
+  font-size: 2rem;
+  line-height: 2rem;
+  letter-spacing: 1px;
+  text-transform: lowercase;
+}
+
+.superscript {
+  font-size: 0.5em;
+  vertical-align: super;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.header-hidden {
+    opacity: 0;
+    transform: translateY(60vh); 
+}
+
+.header-visible {
+  opacity: 1;
+  transform: translateY(40vh); 
+}
+
+.header-moved-up {
+  opacity: 0.3;
+  transform: translateY(0vh);
+}

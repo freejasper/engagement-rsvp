@@ -1,0 +1,44 @@
+#dietary-options {
+    padding: 0;
+    margin: 0;
+    margin-top: 1rem;
+    z-index: 2;
+    border: none;
+    transition: all 0.5s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden;
+    grid-row: 3;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  border-radius: 0;
+  border: 2px solid var(--charcoal);
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-right: 0.5rem;
+}
+
+input[type="checkbox"]:checked {
+  background-color: var(--charcoal);
+}
+
+.dietary-options-hidden {
+    opacity: 0;
+    height: 0;
+    margin-top: 0;
+    transform: translateY(20px);
+}
+.dietary-options-visible {
+    opacity: 1;
+    height: auto;
+    transform: translateY(0);
+}
+
+.checkbox-option {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}

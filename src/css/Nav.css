@@ -1,0 +1,29 @@
+#next-prev-container {
+    display: flex;
+    width: 50%;
+    gap: 20px;
+}
+
+#next, #prev {
+    cursor: pointer;
+    appearance: none;
+    border: none;
+    width: fit-content;
+    overflow: hidden;
+    color: var(--charcoal);
+    background-color: unset;
+    font-size: 1.3rem;
+    font-weight: 500;
+    padding: 0;
+    font-family: 'Barlow Condensed';
+
+    transition: opacity 0.15s ease-in-out;
+}
+
+#next-prev-container button:disabled {
+    opacity: 0;
+}
+
+#next-prev-container button:enabled:hover {
+    text-decoration: underline;
+}
