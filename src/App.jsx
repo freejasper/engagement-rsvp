@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { use, useEffect, useState } from 'react'
 import names from './dummyData';
 import NameInputShell from './utils/NameInputShell';
 import TextHeader from './utils/ui/TextHeader';
@@ -6,8 +6,27 @@ import RsvpOptionsShell from './utils/RsvpOptionsShell';
 import TextFooter from './utils/ui/TextFooter';
 import './App.css'
 
-function App() {
+import { loadList, saveList } from './api.js';
 
+function App() {
+  // load and set data
+  const [listData, setListData] = useState([]);
+  const [listSha, setListSha] = useState('');
+
+  async function fetchData() {
+      try {
+        const result = await loadList();
+        setListData(result.data);
+        setListSha(result.sha);
+      } catch (err) {
+        console.log('Error loading list data:', err);
+      }
+    }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+   
   // Setting and checking entered name against names list
   const [matchedName, setMatchedName] = useState('');
   const [plusOne, setPlusOne] = useState('');
