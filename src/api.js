@@ -1,5 +1,5 @@
 // src/api.js  – safe to bundle
-const API = import.meta.env.VITE_API_URL || '/api/github-data';
+const API = import.meta.env.VITE_API_URL || '../api/github-data';
 
 export async function loadList() {
   const r = await fetch(API);               // no secret header
