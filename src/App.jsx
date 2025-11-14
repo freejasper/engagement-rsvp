@@ -25,6 +25,7 @@ function App() {
 
   useEffect(() => {
     fetchData();
+    console.log('List data loaded:', listData);
   }, []);
    
   // Setting and checking entered name against names list
