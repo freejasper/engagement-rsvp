@@ -5,8 +5,7 @@ const FILE  = 'data.json';
 const PAT   = process.env.GITHUB_PAT;
 
 export default async function handler(req, res) {
-   if (!PAT) console.log('PAT not found');
-    console.log('API request method:', req.method);
+   console.log("PAT present?", !!process.env.GITHUB_PAT);
 
   if (req.method === 'GET') {
     const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE}`;
