@@ -5,8 +5,6 @@ const FILE  = 'data.json';
 const PAT   = process.env.GITHUB_PAT;
 
 export default async function handler(req, res) {
-   console.log("PAT present?", !!process.env.GITHUB_PAT);
-
   if (req.method === 'GET') {
     const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/contents/${FILE}`;
     const gh  = await fetch(url, { headers: { Authorization: `Bearer ${PAT}`, Accept: "application/vnd.github+json" }});
@@ -14,7 +12,7 @@ export default async function handler(req, res) {
 
     const { content, sha } = await gh.json();
     const json = JSON.parse(Buffer.from(content, 'base64').toString());
-    return res.json({ data: json, sha });
+    return res.json({ data: json, sha, ok: true });
   }
 
   if (req.method === 'PUT') {

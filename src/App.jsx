@@ -16,8 +16,8 @@ function App() {
   async function fetchData() {
       try {
         const result = await loadList();
-        setListData(result.data);
-        setListSha(result.sha);
+        if (result.ok) setListData(result.data);
+        if(result.ok) setListSha(result.sha);
       } catch (err) {
         console.log('Error loading list data:', err);
       }
@@ -25,8 +25,8 @@ function App() {
 
   useEffect(() => {
     fetchData();
-    console.log('List data loaded:', listData);
-  }, []);
+    if (listData) console.log('List data loaded:', listData);
+  }, [listData]);
    
   // Setting and checking entered name against names list
   const [matchedName, setMatchedName] = useState('');
