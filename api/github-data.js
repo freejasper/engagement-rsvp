@@ -9,7 +9,7 @@ export default async function handler(req, res) {
 
   if (req.method === 'GET') {
     const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE}`;
-    const gh  = await fetch(url, { headers: { Authorization: `token ${PAT}` }});
+    const gh  = await fetch(url, { headers: { Authorization: `Bearer ${PAT}`, Accept: "application/vnd.github+json" }});
     if (!gh.ok) return res.status(gh.status).json({ error: gh.statusText });
 
     const { content, sha } = await gh.json();
@@ -25,7 +25,7 @@ export default async function handler(req, res) {
     const url  = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE}`;
     const gh   = await fetch(url, {
       method: 'PUT',
-      headers: { Authorization: `Bearer ${PAT}`, 'Content-Type': 'application/json', Accept: "application/vnd.github+json" },
+      headers: { Authorization: `Bearer ${PAT}`, 'Content-Type': 'application/json' },
       body: JSON.stringify(body)
     });
     if (!gh.ok) return res.status(gh.status).json({ error: gh.statusText });
