@@ -5,6 +5,9 @@ const FILE  = 'data.json';
 const PAT   = process.env.GITHUB_PAT;
 
 export default async function handler(req, res) {
+   if (!PAT) console.log('PAT not found');
+    console.log('API request method:', req.method);
+
   if (req.method === 'GET') {
     const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE}`;
     const gh  = await fetch(url, { headers: { Authorization: `token ${PAT}` }});
@@ -23,7 +26,7 @@ export default async function handler(req, res) {
     const url  = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE}`;
     const gh   = await fetch(url, {
       method: 'PUT',
-      headers: { Authorization: `token ${PAT}`, 'Content-Type': 'application/json' },
+      headers: { Authorization: `Bearer ${PAT}`, 'Content-Type': 'application/json', Accept: "application/vnd.github+json" },
       body: JSON.stringify(body)
     });
     if (!gh.ok) return res.status(gh.status).json({ error: gh.statusText });
