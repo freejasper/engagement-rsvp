@@ -20,8 +20,8 @@ function App() {
   useEffect(() => {
     if (submitMessageRef.current) {
       setSubmitComplete(false);
-      submitMessageRef.current.style.display = 'none';
-          submitMessageRef.current.style.opacity = '0';
+      submitMessageRef.current.classList.remove('submission-message-visible');
+      submitMessageRef.current.classList.add('submission-message-hidden');
     }
 
     const fetchData = async () => {
@@ -150,11 +150,8 @@ function App() {
 
         setSubmitComplete(true);
         if (submitMessageRef.current) {
-          setTimeout(() => {
-            submitMessageRef.current.style.display = 'flex';
-            submitMessageRef.current.style.opacity = '1';
-          }, 500);
-          
+          submitMessageRef.current.classList.add('submission-message-visible');
+          submitMessageRef.current.classList.remove('submission-message-hidden');
         }
         return newData;
       })
@@ -227,7 +224,7 @@ function App() {
         dinnerAttendanceComplete={dinnerAttendanceComplete}
         setDinnerAttendanceComplete={setDinnerAttendanceComplete}
         submitForm={submitForm} />
-        {submitComplete && <div id="submit-complete-message"><div id="submission-box">RSVP submission complete <br></br>See you on the 7th of Feb</div></div>}
+        {submitComplete && <div id="submit-complete-message" ref={submitMessageRef}><div id="submission-box">RSVP submission complete <br></br>See you on the 7th of Feb</div></div>}
     </div>
   )
 }
