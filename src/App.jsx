@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import names from './dummyData';
 import NameInputShell from './utils/NameInputShell';
 import TextHeader from './utils/ui/TextHeader';
@@ -6,26 +6,28 @@ import RsvpOptionsShell from './utils/RsvpOptionsShell';
 import TextFooter from './utils/ui/TextFooter';
 import './App.css'
 
+// API
 import { loadList, saveList } from './api.js';
 
 function App() {
   // load and set data
+  const [loading, setLoading] = useState(true);
   const [listData, setListData] = useState([]);
   const [listSha, setListSha] = useState('');
 
-  async function fetchData() {
+  useEffect(() => {
+    const fetchData = async () => {
       try {
         const result = await loadList();
         if (result.ok) setListData(result.data);
         if(result.ok) setListSha(result.sha);
       } catch (err) {
         console.log('Error loading list data:', err);
+      } finally {
+        setLoading(false);
       }
     }
-
-  useEffect(() => {
     fetchData();
-    if (listData) console.log('List data loaded:', listData);
   }, []);
    
   // Setting and checking entered name against names list
@@ -33,13 +35,15 @@ function App() {
   const [plusOne, setPlusOne] = useState('');
   const [skipPlusOne, setSkipPlusOne] = useState(false);
   const [step, setStep] = useState(1);
-
-  const namesValues = Object.values(names);
   const [dinnerInvite, setDinnerInvite] = useState(false)
 
+  function norm(str) {
+    return str.toLowerCase().replace(/\s+/g, '');
+  }
+
   function matchName(enteredName) {
-    const match = namesValues.find((person) => {
-      return person.name.toLowerCase().replace(/\s+/g, '') === enteredName.toLowerCase().replace(/\s+/g, '')
+    const match = listData.find((person) => {
+      return norm(person.name) === norm(enteredName);
     });
     if (match) {
       setMatchedName(enteredName);
@@ -62,14 +66,53 @@ function App() {
     if (matchedName.length > 0) setStep(2);
   }, [matchedName]);
 
-  useEffect(() => {
-    console.log('Plus one:', plusOne);
-  }, [plusOne]);
-
-  // RSVP options
+  // RSVP states
   const [attendance, setAttendance] = useState('');
   const [plusOneAttendance, setPlusOneAttendance] = useState('');
+  const [dinnerAttendance, setDinnerAttendance] = useState('');
+  const [dinnerPlusOneAttendance, setDinnerPlusOneAttendance] = useState('');
+  const [attendanceComplete, setAttendanceComplete] = useState(false);
+  const [dinnerAttendanceComplete, setDinnerAttendanceComplete] = useState(false);
 
+  // SUBMIT FORM FUNCTION
+  function submitForm () {
+    if (matchedName, attendanceComplete, dinnerAttendanceComplete) {
+      const updates = {
+        [norm(matchedName)]:{
+        name: matchedName,
+        rsvp: attendance,
+        dinnerRsvp: dinnerAttendance,
+        dinnerInvite: dinnerInvite
+      }
+      };
+      if (plusOne){
+        updates[norm(plusOne)] = {
+        name: plusOne,
+        rsvp: plusOneAttendance,
+        dinnerRsvp: dinnerPlusOneAttendance,
+        dinnerInvite: dinnerInvite
+        }
+      }
+
+      setListData((prev) => {
+        const newData = prev.map((person) => {
+          const key = norm(person.name);
+          return updates[key] ? { ...person, ...updates[key] } : person;
+        });
+        saveList(newData, listSha).then((result) => {
+          if (result.ok) {
+            setListSha(result.sha);
+            console.log('List saved', result.sha);
+          }
+        }).catch(console.error);
+
+        console.log('Submit complete', newData);
+        return newData;
+      })
+    }
+  }
+
+  // LOGGING STATES
   useEffect(() => {
     console.log('Attendance status:', attendance);
   }, [attendance]);
@@ -77,9 +120,6 @@ function App() {
   useEffect(() => {
     console.log('Plus one attendance status:', plusOneAttendance);
   }, [plusOneAttendance]);
-
-  const [dinnerAttendance, setDinnerAttendance] = useState('');
-  const [dinnerPlusOneAttendance, setDinnerPlusOneAttendance] = useState('');
 
   useEffect(() => {
     console.log('Dinner status:', dinnerAttendance);
@@ -89,36 +129,26 @@ function App() {
     console.log('Plus One Dinner status:', dinnerPlusOneAttendance);
   }, [dinnerPlusOneAttendance]);
 
-  const [attendanceComplete, setAttendanceComplete] = useState(false);
-  const [dinnerAttendanceComplete, setDinnerAttendanceComplete] = useState(false);
+  useEffect(() => {
+    console.log('Plus one:', plusOne);
+  }, [plusOne]);
 
-  function submitForm () {
-    if (matchedName, attendanceComplete, dinnerAttendanceComplete) {
+  useEffect(() => {
+    console.log('listData:', listData)
+  }, [listData]);
 
-      const match = namesValues.find((person) => {
-        if (person.name.toLowerCase().replace(/\s+/g, '') === matchedName.toLowerCase().replace(/\s+/g, '')) {
-          return person;
-        }
-      });
-      if (match) {
-        match.rsvp = attendance;
-        match.dinnerRsvp = dinnerAttendance;
+  useEffect(() => {
+    console.log('List SHA:', listSha);
+  }, [listSha]);
 
-        const plusOneMatch = namesValues.find((person) => {
-          if (person.name.toLowerCase().replace(/\s+/g, '') === plusOne.toLowerCase().replace(/\s+/g, '')) {
-            return person;
-          }
-        });
-        if (plusOneMatch) {
-          plusOneMatch.rsvp = plusOneAttendance;
-          plusOneMatch.dinnerRsvp = plusOneAttendance;
-        }
-      }
-
-    }
+  if (loading) {
+    return (
+      <div>Loading ...</div>
+    )
   }
 
-  return (
+  if (!loading){
+    return (
     <>
       <TextHeader />
       <TextFooter />
@@ -147,6 +177,7 @@ function App() {
         submitForm={submitForm} />
     </>
   )
+}
 }
 
 export default App

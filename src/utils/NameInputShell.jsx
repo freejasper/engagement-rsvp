@@ -10,6 +10,11 @@ export default function NameInputShell({ matchName, setStep }) {
         setStep(1);
     }
 
+    // run match function on input change
+    useEffect(() => {
+        matchName(enteredName);
+    }, [enteredName, matchName]);
+
     // pass down checking function to handle submit
     function handleSubmit(event) {
         event.preventDefault();
