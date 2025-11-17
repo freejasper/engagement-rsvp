@@ -150,8 +150,11 @@ function App() {
 
         setSubmitComplete(true);
         if (submitMessageRef.current) {
-          submitMessageRef.current.style.display = 'flex';
-          submitMessageRef.current.style.opacity = '1';
+          setTimeout(() => {
+            submitMessageRef.current.style.display = 'flex';
+            submitMessageRef.current.style.opacity = '1';
+          }, 500);
+          
         }
         return newData;
       })
