@@ -20,8 +20,8 @@ function App() {
   useEffect(() => {
     if (submitMessageRef.current) {
       setSubmitComplete(false);
-      submitMessageRef.current.classList.remove('submission-message-visible');
-      submitMessageRef.current.classList.add('submission-message-hidden');
+      submitMessageRef.current.style.display = 'none';
+          submitMessageRef.current.style.opacity = '0';
     }
 
     const fetchData = async () => {
@@ -150,8 +150,8 @@ function App() {
 
         setSubmitComplete(true);
         if (submitMessageRef.current) {
-          submitMessageRef.current.classList.add('submission-message-visible');
-          submitMessageRef.current.classList.remove('submission-message-hidden');
+          submitMessageRef.current.style.display = 'flex';
+          submitMessageRef.current.style.opacity = '1';
         }
         return newData;
       })
