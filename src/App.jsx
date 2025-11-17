@@ -149,15 +149,19 @@ function App() {
         setDinnerInvite(false);
 
         setSubmitComplete(true);
-        if (submitMessageRef.current) {
-          submitMessageRef.current.classList.add('submission-message-visible');
-          submitMessageRef.current.classList.remove('submission-message-hidden');
-        }
+        
         return newData;
       })
     }
   }
   }
+
+  useLayoutEffect(() => {
+    if (submitComplete && submitMessageRef.current) {
+      submitMessageRef.current.classList.add('submission-message-visible');
+      submitMessageRef.current.classList.remove('submission-message-hidden');
+    }
+  }, [submitComplete]);
 
   // LOGGING STATES
   useEffect(() => {
