@@ -1,7 +1,6 @@
 #nameInput {
     transition: all 0.5s ease-in-out; 
     grid-row-start: 2;
-    align-self: end;
     margin-bottom: 0.7rem;
     display: flex;
 }
