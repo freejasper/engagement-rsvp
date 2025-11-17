@@ -224,7 +224,7 @@ function App() {
         dinnerAttendanceComplete={dinnerAttendanceComplete}
         setDinnerAttendanceComplete={setDinnerAttendanceComplete}
         submitForm={submitForm} />
-        {submitComplete && <div id="submit-complete-message" ref={submitMessageRef}><div id="submission-box">RSVP submission complete <br></br>See you on the 7th of Feb</div></div>}
+        {submitComplete && <div id="submit-complete-message" ref={submitMessageRef} class="submission-message-hidden"><div id="submission-box">RSVP submission complete <br></br>See you on the 7th of Feb</div></div>}
     </div>
   )
 }
