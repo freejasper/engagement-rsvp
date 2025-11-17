@@ -1,6 +1,6 @@
 #text-footer {
     position: absolute;
-    bottom: env(safe-area-inset-bottom, 0);
+    bottom: env(safe-area-inset-bottom);
     padding-bottom: 40px;
     max-width: 850px;
     width: 100%;
@@ -30,10 +30,11 @@
 }
 
 @media screen and (max-width: 400px) {
-   #text-footer { 
+   #text-footer {
+    bottom: env(safe-area-inset-bottom); 
     margin-left: -1.2rem;
     font-size: 1.1rem;
-    padding-bottom: 90px;
+    padding-bottom: 20px;
     }
 }
 
