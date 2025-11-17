@@ -119,5 +119,5 @@ fieldset legend {
 }
 
 .submission-message-visible {
-  opacity: 1;
+  opacity: 1 !important;
 }
