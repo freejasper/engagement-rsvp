@@ -16,6 +16,7 @@ html {
 }
 
 body {
+  min-height: -webkit-fill-available;
   position: fixed;
   background-color: var(--primary-red);
   overflow: hidden;
