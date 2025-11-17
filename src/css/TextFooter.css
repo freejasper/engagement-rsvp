@@ -29,13 +29,15 @@
     stroke: var(--charcoal);
 }
 
-@media screen and (min-width: 850px) {
-    
-}
-
-@media screen and (max-width: 380px) {
-    #text-footer {
-        margin-left: -1.2rem;
-        padding-bottom: 12px;
+@media screen and (max-width: 400px) {
+   #text-footer { 
+    margin-left: -1.2rem;
+    font-size: 1.1rem;
     }
 }
+
+/* @media screen and (max-width: 380px) {
+    #text-footer {
+        padding-bottom: 12px;
+    }
+} */
