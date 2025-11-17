@@ -3,6 +3,7 @@
     grid-row-start: 2;
     align-self: end;
     margin-bottom: 0.7rem;
+    display: flex;
 }
 
 .nameInput-hidden {
@@ -16,6 +17,7 @@
 }
 
 #nameInput input[type="text"] {
+      width: 100%;
       border: none;
       background: transparent;
       outline: none;
@@ -27,4 +29,10 @@
 #nameInput input[type="text"]::placeholder {
       color: var(--charcoal);
       opacity: 1;
+}
+
+@media screen and (max-width: 400px) {
+    #nameInput input[type="text"] {
+        font-size: 2rem;
+    }
 }

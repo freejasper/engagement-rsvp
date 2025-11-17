@@ -6,7 +6,7 @@ const PAT   = process.env.GITHUB_PAT;
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
-    const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/contents/${FILE}`;
+    const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE}`;
     const gh  = await fetch(url, { headers: { Authorization: `Bearer ${PAT}`, Accept: "application/vnd.github+json" }});
     if (!gh.ok) return res.status(gh.status).json({ error: gh.statusText });
 

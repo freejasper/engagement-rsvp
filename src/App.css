@@ -18,24 +18,35 @@ html {
 body {
   position: fixed;
   background-color: var(--primary-red);
-  max-width: 480px;
   overflow: hidden;
   width: 100%;
   height: 100%;
 }
 
 #root {
+  max-width: 850px;
   width: 100%;
   height: 100%;
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  grid-template-columns: 100%;
 
   box-sizing: border-box;
 
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+
+@media screen and (max-width: 400px) {
+  #root {
+    padding: 1rem;
+  }
+}
+
+#app-container {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 100%;
 }
 
 fieldset legend {

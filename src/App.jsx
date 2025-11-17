@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react'
-import names from './dummyData';
+import { useEffect, useLayoutEffect, useState, useRef } from 'react'
 import NameInputShell from './utils/NameInputShell';
 import TextHeader from './utils/ui/TextHeader';
 import RsvpOptionsShell from './utils/RsvpOptionsShell';
@@ -29,6 +28,25 @@ function App() {
     }
     fetchData();
   }, []);
+
+  //window resize listener
+  const svgRef = useRef(null);
+  const infoRef = useRef(null);
+
+  useLayoutEffect(() => {
+    function setTopMargin() {
+      if (svgRef.current && infoRef.current) {
+        const svgHeight = svgRef.current.getBoundingClientRect().height * 0.27;
+        console.log('svgHeight:', svgHeight);
+        infoRef.current.style.marginTop = `-${svgHeight}px`;
+      }      
+    }
+    if(!loading) setTopMargin();
+    window.addEventListener('resize', setTopMargin);
+    return () => {
+      window.removeEventListener('resize', setTopMargin);
+    };
+  }, [loading]);
    
   // Setting and checking entered name against names list
   const [matchedName, setMatchedName] = useState('');
@@ -38,7 +56,7 @@ function App() {
   const [dinnerInvite, setDinnerInvite] = useState(false)
 
   function norm(str) {
-    return str.toLowerCase().replace(/\s+/g, '');
+    return String(str).toLowerCase().replace(/\s+/g, '');
   }
 
   function matchName(enteredName) {
@@ -76,7 +94,7 @@ function App() {
 
   // SUBMIT FORM FUNCTION
   function submitForm () {
-    if (matchedName, attendanceComplete, dinnerAttendanceComplete) {
+    if (matchedName && attendanceComplete && dinnerAttendanceComplete) {
       const updates = {
         [norm(matchedName)]:{
         name: matchedName,
@@ -107,6 +125,20 @@ function App() {
         }).catch(console.error);
 
         console.log('Submit complete', newData);
+        // reset states
+        setListData(newData);
+        setMatchedName('');
+        setPlusOne('');
+        setStep(1);
+        setAttendance('');
+        setPlusOneAttendance('');
+        setDinnerAttendance('');
+        setDinnerPlusOneAttendance('');
+        setAttendanceComplete(false);
+        setDinnerAttendanceComplete(false);
+        setDinnerInvite(false);
+
+        alert('RSVP submission complete. See you on the 18th of Feb!');
         return newData;
       })
     }
@@ -143,15 +175,17 @@ function App() {
 
   if (loading) {
     return (
-      <div>Loading ...</div>
+      <div id="loading">Loading ...</div>
     )
   }
 
   if (!loading){
     return (
-    <>
+    <div id="app-container">
       <TextHeader />
-      <TextFooter />
+      <TextFooter
+      infoRef={infoRef}
+      svgRef={svgRef} />
       <NameInputShell 
         matchName={matchName}
         setStep={setStep} />
@@ -175,7 +209,7 @@ function App() {
         dinnerAttendanceComplete={dinnerAttendanceComplete}
         setDinnerAttendanceComplete={setDinnerAttendanceComplete}
         submitForm={submitForm} />
-    </>
+    </div>
   )
 }
 }

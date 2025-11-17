@@ -22,6 +22,17 @@ h3 {
   text-transform: lowercase;
 }
 
+@media screen and (max-width: 500px) {
+  h4 {
+    font-size: 1rem;
+    line-height: 1rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+    line-height: 1.3rem;
+  }
+}
+
 .superscript {
   font-size: 0.5em;
   vertical-align: super;

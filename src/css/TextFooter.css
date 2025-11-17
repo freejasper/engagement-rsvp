@@ -1,7 +1,8 @@
 #text-footer {
     position: absolute;
-    bottom: 0.5rem;
-
+    bottom: env(safe-area-inset-bottom, 0);
+    padding-bottom: 40px;
+    max-width: 850px;
     width: 100%;
     height: auto;
     box-sizing: border-box;
@@ -11,10 +12,9 @@
 }
 
 #footer-details {
-    font-size: 1rem;
-    line-height: 0.9rem;
+    font-size: 1.3rem;
+    line-height: 1.15rem;
     color: var(--charcoal);
-    margin-top: -12.5vh;
     padding: 0 2rem 0 2rem;
 
     font-family: 'Barlow Condensed', sans-serif;
@@ -27,4 +27,15 @@
     height: auto;
     fill: var(--charcoal);
     stroke: var(--charcoal);
+}
+
+@media screen and (min-width: 850px) {
+    
+}
+
+@media screen and (max-width: 380px) {
+    #text-footer {
+        margin-left: -1.2rem;
+        padding-bottom: 12px;
+    }
 }

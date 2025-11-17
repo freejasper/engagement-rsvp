@@ -23,9 +23,15 @@ export default function SubmitForm ({
         }
     }, [dinnerInvite, matchedName, attendanceComplete, dinnerAttendanceComplete, noAttendance]);
     
+    function handleSubmit() {
+        setSubmitDisabled(true);
+        submitForm();
+        setSubmitDisabled(false);
+    }
+
     return (
         <>
-            {!submitDisabled && <button id='submit-button' onClick={submitForm} >SUBMIT</button>}
+            {!submitDisabled && <button id='submit-button' onClick={handleSubmit} >SUBMIT</button>}
         </>
     )
 }
