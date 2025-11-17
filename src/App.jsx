@@ -158,8 +158,9 @@ function App() {
 
   useLayoutEffect(() => {
     if (submitComplete && submitMessageRef.current) {
-      submitMessageRef.current.classList.remove('submission-message-hidden');
+      setTimeout(() => {submitMessageRef.current.classList.remove('submission-message-hidden');
       submitMessageRef.current.classList.add('submission-message-visible');
+    }, 100);
     }
   }, [submitComplete]);
 
