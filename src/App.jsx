@@ -103,7 +103,8 @@ function App() {
 
   // SUBMIT FORM FUNCTION
   function submitForm () {
-    if (matchedName && attendanceComplete && dinnerAttendanceComplete) {
+    if ((dinnerInvite && dinnerAttendanceComplete) || (!dinnerInvite)) {
+      if (matchedName && attendanceComplete) {
       const updates = {
         [norm(matchedName)]:{
         name: matchedName,
@@ -155,6 +156,7 @@ function App() {
         return newData;
       })
     }
+  }
   }
 
   // LOGGING STATES

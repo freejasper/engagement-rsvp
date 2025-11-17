@@ -99,7 +99,7 @@ fieldset legend {
   justify-content: center;
   align-items: center;
 
-  transition: all (0.5s ease-in-out);
+  transition: all 0.5s ease-in-out;
 }
 
 #submission-box {
@@ -107,6 +107,8 @@ fieldset legend {
   padding: 3rem 4rem;
   border: 2px solid var(--charcoal);
   box-shadow: rgba(26, 26, 26, 0.5) 0px 0px 200px 0px;
+
+  z-index: 4;
 }
 
 .submission-message-hidden {
