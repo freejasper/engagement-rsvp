@@ -6,7 +6,7 @@
 }
 
 :root {
-  --primary-red: #e14522;
+  --primary-red: rgb(225, 69, 34);
   --charcoal: #1a1a1a;
 }
 
@@ -79,4 +79,42 @@ fieldset legend {
 #submit-button:hover {
   border: none;
   text-decoration: underline;
+}
+
+#submit-complete-message {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(225, 69, 34, 0.8);
+  color: var(--charcoal);
+  font-size: 2rem;
+  line-height: 1.8rem;
+  font-family: 'barlow condensed';
+  font-weight: 500;
+  text-transform: uppercase;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: all (0.5s ease-in-out);
+}
+
+#submission-box {
+  background-color: var(--primary-red);
+  padding: 3rem 4rem;
+  border: 2px solid var(--charcoal);
+  box-shadow: rgba(26, 26, 26, 0.5) 0px 0px 200px 0px;
+}
+
+.submission-message-hidden {
+  display: none;
+  opacity: 0;
+}
+
+.submission-message-visible {
+  display: flex;
+  opacity: 1;
 }

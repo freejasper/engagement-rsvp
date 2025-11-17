@@ -14,7 +14,16 @@ function App() {
   const [listData, setListData] = useState([]);
   const [listSha, setListSha] = useState('');
 
+  const [submitComplete, setSubmitComplete] = useState(false);
+  const submitMessageRef = useRef(null);
+
   useEffect(() => {
+    if (submitMessageRef.current) {
+      setSubmitComplete(false);
+      submitMessageRef.current.classList.remove('submission-message-visible');
+      submitMessageRef.current.classList.add('submission-message-hidden');
+    }
+
     const fetchData = async () => {
       try {
         const result = await loadList();
@@ -138,7 +147,11 @@ function App() {
         setDinnerAttendanceComplete(false);
         setDinnerInvite(false);
 
-        alert('RSVP submission complete. See you on the 18th of Feb!');
+        setSubmitComplete(true);
+        if (submitMessageRef.current) {
+          submitMessageRef.current.classList.add('submission-message-visible');
+          submitMessageRef.current.classList.remove('submission-message-hidden');
+        }
         return newData;
       })
     }
@@ -209,6 +222,7 @@ function App() {
         dinnerAttendanceComplete={dinnerAttendanceComplete}
         setDinnerAttendanceComplete={setDinnerAttendanceComplete}
         submitForm={submitForm} />
+        {submitComplete && <div id="submit-complete-message"><div id="submission-box">RSVP submission complete <br></br>See you on the 7th of Feb</div></div>}
     </div>
   )
 }
