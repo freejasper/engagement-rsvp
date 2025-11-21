@@ -60,6 +60,7 @@ fieldset legend {
 
 #buttons {
   width: 100%;
+  min-height: 35px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -140,6 +141,12 @@ fieldset legend {
 
 .submission-small {
   font-size: 1rem;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#submission-details {
+  margin-top: 10px;
 }
 
 @media screen and (max-width: 450px) {

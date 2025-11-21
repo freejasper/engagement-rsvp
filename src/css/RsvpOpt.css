@@ -1,7 +1,7 @@
 #rsvp-options-shell {
   grid-row-start: 3;
   display: grid;
-  grid-template-rows: 3fr auto 2fr;
+  grid-template-rows: auto auto 2fr;
   row-gap: 0px;
 }
 
@@ -16,6 +16,7 @@
 }
 
 #dinnerOpt {
+  min-height: 91px;
   grid-row-start: 1;
   box-sizing: border-box;
   width: 100%;
