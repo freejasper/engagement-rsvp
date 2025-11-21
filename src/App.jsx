@@ -225,10 +225,11 @@ function App() {
               <p className="submission-mid">See you on the 7th of Feb</p>
               <div id="submission-details">
                 <p className="submission-mid bold">Submission Details</p>
-                <p className="submission-small">{matchedName}</p>
+                <p className="submission-small bold">{matchedName}</p>
                 <p className="submission-small">Attendance: {attendance}</p>
                 {dinnerInvite && <p className="submission-small">Dinner Attendance: {dinnerAttendance}</p>}
-                {plusOne && <p className="submission-small">{plusOne} Attendance: {plusOneAttendance}</p>}
+                {plusOne && <p className="submission-small bold">{plusOne}</p>}
+                {plusOne && <p className="submission-small">Attendance: {plusOneAttendance}</p>}
                 {plusOne && dinnerInvite && <p className="submission-small">{plusOne} Dinner Attendance: {dinnerPlusOneAttendance}</p>}
               </div>
             </div>
