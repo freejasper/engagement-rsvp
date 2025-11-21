@@ -141,12 +141,14 @@ fieldset legend {
 
 .submission-small {
   font-size: 1rem;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+  font-weight: 300;
 }
 
 #submission-details {
   margin-top: 10px;
+  line-height: 1rem;
 }
 
 @media screen and (max-width: 450px) {

@@ -6,6 +6,7 @@
 }
 
 #rsvpOpt {
+    min-height: 91px;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
