@@ -135,19 +135,8 @@ function App() {
         }).catch(console.error);
 
         console.log('Submit complete', newData);
-        // reset states
+        
         setListData(newData);
-        setMatchedName('');
-        setPlusOne('');
-        setStep(1);
-        setAttendance('');
-        setPlusOneAttendance('');
-        setDinnerAttendance('');
-        setDinnerPlusOneAttendance('');
-        setAttendanceComplete(false);
-        setDinnerAttendanceComplete(false);
-        setDinnerInvite(false);
-
         setSubmitComplete(true);
         
         return newData;
@@ -164,34 +153,34 @@ function App() {
     }
   }, [submitComplete]);
 
-  // LOGGING STATES
-  useEffect(() => {
-    console.log('Attendance status:', attendance);
-  }, [attendance]);
+  // // LOGGING STATES
+  // useEffect(() => {
+  //   console.log('Attendance status:', attendance);
+  // }, [attendance]);
 
-  useEffect(() => {
-    console.log('Plus one attendance status:', plusOneAttendance);
-  }, [plusOneAttendance]);
+  // useEffect(() => {
+  //   console.log('Plus one attendance status:', plusOneAttendance);
+  // }, [plusOneAttendance]);
 
-  useEffect(() => {
-    console.log('Dinner status:', dinnerAttendance);
-  }, [dinnerAttendance]);
+  // useEffect(() => {
+  //   console.log('Dinner status:', dinnerAttendance);
+  // }, [dinnerAttendance]);
 
-  useEffect(() => {
-    console.log('Plus One Dinner status:', dinnerPlusOneAttendance);
-  }, [dinnerPlusOneAttendance]);
+  // useEffect(() => {
+  //   console.log('Plus One Dinner status:', dinnerPlusOneAttendance);
+  // }, [dinnerPlusOneAttendance]);
 
-  useEffect(() => {
-    console.log('Plus one:', plusOne);
-  }, [plusOne]);
+  // useEffect(() => {
+  //   console.log('Plus one:', plusOne);
+  // }, [plusOne]);
 
-  useEffect(() => {
-    console.log('listData:', listData)
-  }, [listData]);
+  // useEffect(() => {
+  //   console.log('listData:', listData)
+  // }, [listData]);
 
-  useEffect(() => {
-    console.log('List SHA:', listSha);
-  }, [listSha]);
+  // useEffect(() => {
+  //   console.log('List SHA:', listSha);
+  // }, [listSha]);
 
   if (loading) {
     return (
@@ -229,7 +218,21 @@ function App() {
         dinnerAttendanceComplete={dinnerAttendanceComplete}
         setDinnerAttendanceComplete={setDinnerAttendanceComplete}
         submitForm={submitForm} />
-        {submitComplete && <div id="submit-complete-message" ref={submitMessageRef} class="submission-message-hidden"><div id="submission-box">RSVP submission complete <br></br>See you on the 7th of Feb</div></div>}
+        {//submissionComplete &&
+          <div id="submit-complete-message" ref={submitMessageRef} class="submission-message-hidden">
+            <div id="submission-box">
+              <p className="submission-large bold">RSVP complete</p>
+              <p className="submission-mid">See you on the 7th of Feb</p>
+              <div id="submission-details">
+                <p className="submission-mid bold">Submission Details</p>
+                <p className="submission-small">{matchedName}</p>
+                <p className="submission-small">Attendance: {attendance}</p>
+                {dinnerInvite && <p className="submission-small">Dinner Attendance: {dinnerAttendance}</p>}
+                {plusOne && <p className="submission-small">{plusOne} Attendance: {plusOneAttendance}</p>}
+                {plusOne && dinnerInvite && <p className="submission-small">{plusOne} Dinner Attendance: {dinnerPlusOneAttendance}</p>}
+              </div>
+            </div>
+          </div>}
     </div>
   )
 }

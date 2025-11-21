@@ -90,7 +90,6 @@ fieldset legend {
   height: 100%;
   background-color: rgba(225, 69, 34, 0.8);
   color: var(--charcoal);
-  font-size: 2rem;
   line-height: 1.8rem;
   font-family: 'barlow condensed';
   font-weight: 500;
@@ -99,7 +98,6 @@ fieldset legend {
   z-index: 3;
 
   display: flex;
-  opacity: 0;
   justify-content: center;
   align-items: center;
 
@@ -116,9 +114,42 @@ fieldset legend {
 }
 
 .submission-message-hidden {
-  opacity: 0;
+  opacity: 1;
 }
 
 .submission-message-visible {
   opacity: 1 !important;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+#submission-box p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.submission-large {
+  font-size: 2rem;
+}
+
+.submission-mid {
+  font-size: 1.3rem;
+}
+
+.submission-small {
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 450px) {
+  .submission-large {
+    font-size: 1.5rem;
+  }
+  .submission-mid {
+    font-size: 1.1rem;
+  }
+  .submission-small {
+    font-size: 0.9rem; 
+  }
 }
