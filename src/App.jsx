@@ -226,11 +226,11 @@ function App() {
               <div id="submission-details">
                 <p className="submission-mid bold">Submission Details</p>
                 <p className="submission-small bold">{matchedName}</p>
-                <p className="submission-small">Attendance: {attendance}</p>
-                {dinnerInvite && <p className="submission-small">Dinner Attendance: {dinnerAttendance}</p>}
+                <p className="submission-small">RSVP: {attendance}</p>
+                {dinnerInvite && <p className="submission-small">Dinner RSVP: {dinnerAttendance}</p>}
                 {plusOne && <p className="submission-small bold">{plusOne}</p>}
-                {plusOne && <p className="submission-small">Attendance: {plusOneAttendance}</p>}
-                {plusOne && dinnerInvite && <p className="submission-small">{plusOne} Dinner Attendance: {dinnerPlusOneAttendance}</p>}
+                {plusOne && <p className="submission-small">RSVP: {plusOneAttendance}</p>}
+                {plusOne && dinnerInvite && <p className="submission-small">Dinner RSVP: {dinnerPlusOneAttendance}</p>}
               </div>
             </div>
           </div>}
