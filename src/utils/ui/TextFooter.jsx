@@ -25,7 +25,7 @@ export default function TextFooter({ infoRef, svgRef }) {
             </svg>
             <div id='footer-details' ref={infoRef} >
                 <p>
-                    Put on your best sunday dress for a cocktail party at Petite restaurant located on East st, fortitude valley • 1pm to 4.30pm • Saturday 7 february • Serving canapes • fully licenced venue • Adults only event, babes in arms excepted (and welcomed) • Indicate if you're interested in joining dinner afterwards at &apos;the vietnamese&apos;.
+                    Put on your best sunday dress for a cocktail party at Petite restaurant located on East st, fortitude valley • &nbsp;12.00pm to 4.00pm • Saturday 7 february • Serving canapes • fully licenced venue • Adults only event, babes in arms excepted (and welcomed) • Indicate if you're interested in joining dinner afterwards at &apos;the vietnamese&apos;. &nbsp;RSVP by Wednesday 7 January.
                 </p>
             </div>
         </div>

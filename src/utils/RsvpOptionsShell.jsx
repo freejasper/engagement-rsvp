@@ -101,7 +101,7 @@ export default function RsvpOptionsShell({
                     handleChange={handleChangePlus} />} 
             </div>}
             {!dinnerDisabled && <div id='dinnerOpt' ref={dinnerOptRef} >
-                <h5>Indicate Interest in attending dinner afterwards</h5>
+                <h5>Indicate Interest in attending dinner afterwards {'(approx. $35pp)'}</h5>
                 <DinnerOptions
                     dinnerDisabled={dinnerDisabled}
                     dinnerAttendance={dinnerAttendance}

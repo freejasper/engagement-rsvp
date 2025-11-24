@@ -39,8 +39,6 @@
     }
 }
 
-/* @media screen and (max-width: 380px) {
-    #text-footer {
-        padding-bottom: 12px;
-    }
-} */
+#rsvp-date {
+    font-weight: 500;
+}
