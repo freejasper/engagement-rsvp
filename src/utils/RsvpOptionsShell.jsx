@@ -83,7 +83,7 @@ export default function RsvpOptionsShell({
     }, [attendanceComplete, noAttendance]);
 
     useEffect(() => {
-        const ok = plusOne ? (dinnerAttendance.length > 0 && dinnerPlusOneAttendance.length > 0) && (dinnerAttendance === 'attending' || dinnerPlusOneAttendance === 'attending') : dinnerAttendance.length > 0;
+        const ok = plusOne ? (dinnerAttendance.length > 0 && dinnerPlusOneAttendance.length > 0) && ((dinnerAttendance === 'attending' || dinnerPlusOneAttendance === 'attending') || (dinnerAttendance === 'not-attending' || dinnerPlusOneAttendance === 'not-attending')) : dinnerAttendance.length > 0;
         setDinnerAttendanceComplete(ok);
     }, [dinnerAttendance, dinnerPlusOneAttendance, plusOne, setDinnerAttendanceComplete]);
     
