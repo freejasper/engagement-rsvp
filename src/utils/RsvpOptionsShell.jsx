@@ -70,11 +70,17 @@ export default function RsvpOptionsShell({
         }
     }, [step, setAttendance, setPlusOneAttendance, setDinnerAttendance, setDinnerPlusOneAttendance]);
 
-    useEffect(() => {
-        const ok = plusOne ? (attendance.length > 0 && plusOneAttendance.length > 0) && (attendance === 'attending' || plusOneAttendance === 'attending') : attendance.length > 0;
-        setAttendanceComplete(ok);
-        if (attendance ==='not-attending' && (!plusOne || plusOneAttendance === 'not-attending')) return setNoAttendance(true);
+   useEffect(() => {
+    const ok = plusOne 
+        ? (attendance.length > 0 && plusOneAttendance.length > 0)
+        : attendance.length > 0;
+    setAttendanceComplete(ok);
+    
+    if (attendance === 'not-attending' && (!plusOne || plusOneAttendance === 'not-attending')) {
+        setNoAttendance(true);
+    } else {
         setNoAttendance(false);
+    }
     }, [plusOne, attendance, plusOneAttendance, setAttendanceComplete]);
 
     useEffect(() => {
@@ -83,10 +89,12 @@ export default function RsvpOptionsShell({
     }, [attendanceComplete, noAttendance]);
 
     useEffect(() => {
-        const ok = plusOne ? (dinnerAttendance.length > 0 && dinnerPlusOneAttendance.length > 0) && ((dinnerAttendance === 'attending' || dinnerPlusOneAttendance === 'attending') || (dinnerAttendance === 'not-attending' || dinnerPlusOneAttendance === 'not-attending')) : dinnerAttendance.length > 0;
+        const ok = plusOne 
+            ? (dinnerAttendance.length > 0 && dinnerPlusOneAttendance.length > 0)
+            : dinnerAttendance.length > 0;
         setDinnerAttendanceComplete(ok);
-    }, [dinnerAttendance, dinnerPlusOneAttendance, plusOne, setDinnerAttendanceComplete]);
-    
+        }, [dinnerAttendance, dinnerPlusOneAttendance, plusOne, setDinnerAttendanceComplete]);
+
     return (
         <div id='rsvp-options-shell'>
             {!disabled && <div id='rsvpOpt' ref={rsvpOptionsRef} >
