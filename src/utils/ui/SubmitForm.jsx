@@ -24,6 +24,7 @@ export default function SubmitForm ({
     }, [dinnerInvite, matchedName, attendanceComplete, dinnerAttendanceComplete, noAttendance]);
     
     function handleSubmit() {
+        console.log('attempting submit');
         setSubmitDisabled(true);
         submitForm();
         setSubmitDisabled(false);
