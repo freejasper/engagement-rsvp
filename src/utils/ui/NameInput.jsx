@@ -10,7 +10,7 @@ export default function NameInput({ nameInputRef, enteredName, handleChange, han
                 type="text"
                 value={enteredName}
                 onChange={handleChange}
-                placeholder="Enter your name"
+                placeholder="Enter your full name"
                 disabled={inputOnOff}
             />
             <input type="submit" value='Submit' hidden />
