@@ -188,17 +188,19 @@ function App() {
     )
   }
 
-  if (!loading){
+  const live = false;
+
+  if (!loading) {
     return (
     <div id="app-container">
       <TextHeader />
       <TextFooter
       infoRef={infoRef}
       svgRef={svgRef} />
-      <NameInputShell 
+      {live && <NameInputShell 
         matchName={matchName}
-        setStep={setStep} />
-      <RsvpOptionsShell
+        setStep={setStep} />}
+      {live && <RsvpOptionsShell
         matchedName={matchedName}
         attendance={attendance}
         setAttendance={setAttendance}
@@ -217,7 +219,7 @@ function App() {
         setAttendanceComplete={setAttendanceComplete}
         dinnerAttendanceComplete={dinnerAttendanceComplete}
         setDinnerAttendanceComplete={setDinnerAttendanceComplete}
-        submitForm={submitForm} />
+        submitForm={submitForm} />}
         {submitComplete &&
           <div id="submit-complete-message" ref={submitMessageRef} class="submission-message-hidden">
             <div id="submission-box">
