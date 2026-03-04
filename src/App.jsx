@@ -188,7 +188,7 @@ function App() {
     )
   }
 
-  const live = false;
+  const live = true;
 
   if (!loading) {
     return (
